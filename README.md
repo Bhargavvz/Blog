@@ -1,192 +1,166 @@
-# 🚀 Vue Blog Platform
+# 🚀 Modern Blog Platform
 
-A modern, full-featured blogging platform built with Vue.js that combines elegant design with powerful content management capabilities.
+A modern blog platform built with Vue 3, TypeScript, and Go, featuring a clean design and robust content management system.
 
 ## 📚 Table of Contents
 - [Features](#-features)
-- [Demo](#-demo)
+- [Tech Stack](#-tech-stack)
 - [Getting Started](#-getting-started)
 - [Project Structure](#-project-structure)
 - [Configuration](#-configuration)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
 
 ## ✨ Features
 
-### For Users
-- 📱 Responsive design for seamless viewing across all devices
-- 🔍 Advanced search and filtering for blog posts
-- 💬 Comment system with real-time updates
-- 📧 Contact form with email integration
-- 🌙 Dark/Light mode toggle
+### Frontend
+- 📱 Responsive design with Tailwind CSS
+- 🌙 Dark/Light mode support
+- 📝 Blog post management
+- 📧 Contact form with email notifications
+- 🔐 Secure admin authentication
 
-### For Administrators
-- 🔐 Secure admin authentication system
-- 📝 Rich text editor for creating and editing posts
-- 📊 Analytics dashboard with visitor insights
-- 🗂️ Category and tag management
-- 📸 Image upload and management
+### Backend
+- 🔒 JWT authentication
+- 📨 SMTP email integration
+- 🗄️ MongoDB database
+- 🖼️ Image upload support
+- 🔄 RESTful API
 
-## 🎮 Demo
+## 🛠️ Tech Stack
 
-- Live Demo: [https://vue-blog-platform.demo.com](https://vue-blog-platform.demo.com)
-- Admin Demo: [https://vue-blog-platform.demo.com/admin](https://vue-blog-platform.demo.com/admin)
+### Frontend
+- [Vue 3](https://vuejs.org/) - Progressive JavaScript Framework
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [Pinia](https://pinia.vuejs.org/) - State Management
+- [Vue Router](https://router.vuejs.org/) - Official Vue.js router
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
 
-Demo Admin Credentials:
-- Email: demo@example.com
-- Password: demo123 (Please don't change this password)
+### Backend
+- [Go](https://golang.org/) - Backend programming language
+- [Gin](https://gin-gonic.com/) - Web framework for Go
+- [MongoDB](https://www.mongodb.com/) - NoSQL database
+- [JWT-Go](https://github.com/golang-jwt/jwt) - JSON Web Token implementation
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v14.0 or higher)
-- npm or yarn
-- Modern web browser
+- Node.js (v16.0 or higher)
+- Go (v1.16 or higher)
+- MongoDB
+- Git
 
-### Installation
+### Frontend Setup
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/vue-blog-platform.git
-cd vue-blog-platform
+git clone <repository-url>
+cd Frontend
 ```
 
 2. Install dependencies
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. Set up environment variables
-```bash
-cp .env.example .env
+3. Create .env file
+```env
+VITE_API_URL=http://localhost:8080/api
 ```
 
 4. Start development server
 ```bash
-npm run serve
-# or
-yarn serve
+npm run dev
+```
+
+### Backend Setup
+
+1. Navigate to backend directory
+```bash
+cd Backend
+```
+
+2. Create .env file
+```env
+PORT=8080
+MONGODB_URI=mongodb://localhost:27017/blog
+JWT_SECRET=your_jwt_secret
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_FROM=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+ADMIN_EMAIL=admin-email@gmail.com
+```
+
+3. Run the server
+```bash
+go run main.go
 ```
 
 ## 🏗️ Project Structure
 
 ```
-Frontend/src/
-├── views/                 # Page components
-│   ├── Home.vue          # Landing page
-│   ├── Blog.vue          # Blog listing
-│   ├── BlogPost.vue      # Single post view
-│   ├── About.vue         # About page
-│   ├── Contact.vue       # Contact form
-│   ├── Login.vue         # User login
-│   ├── Admin.vue         # Admin main view
-│   ├── AdminLogin.vue    # Admin authentication
-│   └── AdminDashboard.vue# Analytics dashboard
-├── components/           # Reusable components
-├── assets/              # Static assets
-├── router/              # Vue Router configuration
-├── store/               # Vuex store modules
-└── utils/               # Utility functions
+Frontend/
+├── src/
+│   ├── views/              # Page components
+│   ├── components/         # Reusable components
+│   ├── stores/            # Pinia stores
+│   ├── services/          # API services
+│   ├── router/            # Vue Router config
+│   └── types/             # TypeScript types
+└── ...
+
+Backend/
+├── handlers/              # Request handlers
+├── middleware/           # Custom middleware
+├── models/              # Data models
+├── db/                  # Database configuration
+└── main.go             # Entry point
 ```
 
 ## ⚙️ Configuration
 
 ### Environment Variables
 
-Create a `.env` file in the root directory:
-
+#### Frontend (.env)
 ```env
-VUE_APP_API_URL=your_api_url
-VUE_APP_STORAGE_URL=your_storage_url
-VUE_APP_GA_ID=your_google_analytics_id
+VITE_API_URL=http://localhost:8080/api
 ```
 
-### API Configuration
-
-The platform expects a REST API with the following endpoints:
-- `/api/posts` - Blog posts CRUD
-- `/api/auth` - Authentication
-- `/api/admin` - Admin operations
-- `/api/contact` - Contact form submissions
-
-## 📦 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-# or
-yarn build
+#### Backend (.env)
+```env
+PORT=8080
+MONGODB_URI=mongodb://localhost:27017/blog
+JWT_SECRET=your_jwt_secret
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_FROM=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+ADMIN_EMAIL=admin-email@gmail.com
 ```
 
-### Deploy to Production
+## 📝 API Endpoints
 
-1. Build the project
-2. Upload the contents of the `dist` folder to your web server
-3. Configure your web server to handle SPA routing
+### Authentication
+- `POST /api/login` - Admin login
 
-## 🤝 Contributing
+### Posts
+- `GET /api/posts` - Get all posts
+- `GET /api/posts/:id` - Get single post
+- `POST /api/posts` - Create new post
+- `PUT /api/posts/:id` - Update post
+- `DELETE /api/posts/:id` - Delete post
 
-We welcome contributions! Please follow these steps:
+### Contact
+- `POST /api/contact` - Submit contact form
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/improvement`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add new feature'`)
-5. Push to the branch (`git push origin feature/improvement`)
-6. Create a Pull Request
+## 👥 Development Team
 
-### Coding Standards
-
-- Follow Vue.js Style Guide
-- Write meaningful commit messages
-- Add appropriate documentation
-- Include tests for new features
+- Developer - [Your Name](https://github.com/yourusername)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-- Lead Developer - [Your Name](https://github.com/yourusername)
-- Designer - [Designer Name](https://github.com/designerusername)
-
-## 📞 Support
-
-For support, email support@vueblogplatform.com or join our Discord channel.
-
-## 🛠️ Built With
-
-- [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework
-- [Vue Router](https://router.vuejs.org/) - Official router for Vue.js
-- [Vuex](https://vuex.vuejs.org/) - State management
-- [Axios](https://axios-http.com/) - HTTP client
-- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
-
-## 📈 Project Status
-
-Current Version: 1.0.0
-Status: Active Development
-
-## 🎯 Roadmap
-
-- [ ] User authentication
-- [ ] Comment moderation system
-- [ ] Newsletter integration
-- [ ] Multi-language support
-- [ ] Social media sharing
-
-## 🙏 Acknowledgments
-
-- Thanks to all contributors who have helped this project grow
-- Special thanks to the Vue.js community
-- Inspired by various open-source blog platforms
+This project is licensed under the MIT License.
 
 ---
-
-### 🌟 Star this repository if you find it helpful!
 
 [⬆ back to top](#-table-of-contents)
