@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base transitions */
+.transition-base {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Hover animations */
+.hover-lift {
+  @apply transition-transform duration-300 ease-in-out hover:-translate-y-1;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 ease-in-out hover:scale-105;
+}
+
+/* Form elements */
+input, textarea {
+  @apply transition-colors duration-200;
+}
+
+/* Button animations */
+button {
+  @apply transition-colors duration-200;
+}
+
+/* Link animations */
+a {
+  @apply transition-colors duration-200;
+}
